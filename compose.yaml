@@ -1,4 +1,5 @@
 services:
+  # UI for agencies: http://localhost:3000
   web:
     build: ./client
     ports:
@@ -6,10 +7,17 @@ services:
     volumes:
       - ./client:/app
       - /app/node_modules
+    environment:
+      - NEXT_PUBLIC_API_URL=http://localhost:5001
 
+  # Native Mac/ARM64 Audit Engine
   api:
-    platform: linux/amd64
     build: ./server
     ports:
-      - "5001:5000" # Maps local 5001 to container 5000 (Avoids AirPlay conflict)
+      - "5001:5000"
+    # Essential for Mac/Puppeteer stability
     shm_size: '2gb'
+    deploy:
+      resources:
+        limits:
+          memory: 4G
