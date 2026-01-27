@@ -1,0 +1,17 @@
+# Dependencies
+node_modules/
+.next/
+dist/
+build/
+
+# Docker
+.docker-cache/
+*.tar
+
+# Environment
+.env
+.env.local
+
+# OS Files
+.DS_Store
+Thumbs.db

@@ -1,0 +1,10 @@
+{
+  "name": "snapshot-server",
+  "version": "1.0.0",
+  "main": "index.js",
+  "dependencies": {
+    "fastify": "^4.20.0",
+    "@fastify/cors": "^8.3.0",
+    "puppeteer": "^21.0.0"
+  }
+}

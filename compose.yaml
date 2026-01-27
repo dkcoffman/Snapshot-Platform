@@ -1,0 +1,15 @@
+services:
+  web:
+    build: ./client
+    ports:
+      - "3000:3000"
+    volumes:
+      - ./client:/app
+      - /app/node_modules
+
+  api:
+    platform: linux/amd64
+    build: ./server
+    ports:
+      - "5001:5000" # Maps local 5001 to container 5000 (Avoids AirPlay conflict)
+    shm_size: '2gb'
