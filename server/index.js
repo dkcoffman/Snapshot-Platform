@@ -29,7 +29,7 @@ fastify.post('/api/generate-snapshot', async (request, reply) => {
 
   const targetUrl = businessUrl.startsWith('http') ? businessUrl : `https://${businessUrl}`;
   const startTime = Date.now();
-  
+
   let browser;
   try {
     // Optimized for Mac/ARM64 Docker Container
@@ -45,20 +45,49 @@ fastify.post('/api/generate-snapshot', async (request, reply) => {
     });
 
     const page = await browser.newPage();
-    
+
     // Use a standard Mac User Agent to prevent bot detection
     await page.setUserAgent('Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36');
-    
+
     // Analyze the site
     await page.goto(targetUrl, { waitUntil: 'networkidle2', timeout: 30000 });
 
     const audit = await page.evaluate(() => {
+      const getContacts = () => {
+        const bodyText = document.body.innerText;
+        const emails = Array.from(document.querySelectorAll('a[href^="mailto:"]')).map(a => a.href.replace('mailto:', ''));
+        const phones = Array.from(document.querySelectorAll('a[href^="tel:"]')).map(a => a.href.replace('tel:', ''));
+
+        // Simple regex fallback if no mailto/tel links
+        const emailRegex = /([a-zA-Z0-9._-]+@[a-zA-Z0-9._-]+\.[a-zA-Z0-9._-]+)/gi;
+        const phoneRegex = /(\+?1?[-.]?\s?\(?\d{3}\)?[-.]?\s?\d{3}[-.]?\s?\d{4})/g;
+
+        if (emails.length === 0) {
+          const found = bodyText.match(emailRegex);
+          if (found) emails.push(...found);
+        }
+
+        const socialLinks = Array.from(document.querySelectorAll('a')).map(a => a.href).filter(href =>
+          href.includes('facebook.com') ||
+          href.includes('instagram.com') ||
+          href.includes('linkedin.com') ||
+          href.includes('twitter.com')
+        );
+
+        return {
+          emails: [...new Set(emails)].slice(0, 3), // Unique and limit to 3
+          phones: [...new Set(phones)].slice(0, 3),
+          socials: [...new Set(socialLinks)]
+        };
+      };
+
       return {
         title: document.title,
         metaDescription: document.querySelector('meta[name="description"]')?.content,
         h1Count: document.querySelectorAll('h1').length,
         isHttps: window.location.protocol === 'https:',
         hasOgImage: !!document.querySelector('meta[property="og:image"]'),
+        contactInfo: getContacts()
       };
     });
 
@@ -76,6 +105,7 @@ fastify.post('/api/generate-snapshot', async (request, reply) => {
         social: audit.hasOgImage ? 'Ready' : 'Missing Tags'
       },
       recommendation: grade === 'A' ? 'Excellent! Optimized for search.' : 'Opportunities for optimization found.',
+      contactInfo: audit.contactInfo,
       timestamp: new Date().toISOString()
     };
   } catch (err) {

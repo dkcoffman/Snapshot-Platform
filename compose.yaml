@@ -5,8 +5,8 @@ services:
     ports:
       - "3001:3000"
     volumes:
-      - ./client/app:/app/app
-      - ./client/public:/app/public
+      - ./client:/app
+      - /app/node_modules
     environment:
       - NEXT_PUBLIC_API_URL=http://localhost:5001
 
