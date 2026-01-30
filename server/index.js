@@ -88,8 +88,10 @@ fastify.post('/api/generate-snapshot', async (request, reply) => {
 // 4. Start the Server
 const start = async () => {
   try {
-    await fastify.listen({ port: 5000, host: '0.0.0.0' });
-    console.log('--- Mac-Native Audit Engine Live on Port 5000 ---');
+    const PORT = process.env.PORT || 5000;
+    const HOST = process.env.HOST || '0.0.0.0';
+    await fastify.listen({ port: PORT, host: HOST });
+    console.log(`--- Mac-Native Audit Engine Live on Port ${PORT} ---`);
   } catch (err) {
     fastify.log.error(err);
     process.exit(1);

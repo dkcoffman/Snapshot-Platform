@@ -3,10 +3,10 @@ services:
   web:
     build: ./client
     ports:
-      - "3000:3000"
+      - "3001:3000"
     volumes:
-      - ./client:/app
-      - /app/node_modules
+      - ./client/app:/app/app
+      - ./client/public:/app/public
     environment:
       - NEXT_PUBLIC_API_URL=http://localhost:5001
 
