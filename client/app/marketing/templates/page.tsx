@@ -13,7 +13,7 @@ export default function TemplateGallery() {
     const [templates, setTemplates] = useState<any[]>([]);
 
     React.useEffect(() => {
-        fetch('http://localhost:5000/api/templates')
+        fetch('http://localhost:5001/api/templates')
             .then(res => res.json())
             .then(data => setTemplates(data))
             .catch(err => console.error("Failed to load templates:", err));

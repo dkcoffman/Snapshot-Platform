@@ -9,21 +9,22 @@ interface GradeDisplayProps {
 
 export function GradeDisplay({ grade }: GradeDisplayProps) {
     const colorMap: Record<string, string> = {
-        A: "text-green-500 from-green-500/20 to-green-500/5 border-green-500/30",
-        B: "text-blue-500 from-blue-500/20 to-blue-500/5 border-blue-500/30",
-        C: "text-yellow-500 from-yellow-500/20 to-yellow-500/5 border-yellow-500/30",
-        D: "text-orange-500 from-orange-500/20 to-orange-500/5 border-orange-500/30",
-        F: "text-red-500 from-red-500/20 to-red-500/5 border-red-500/30",
+        A: "text-emerald-600 bg-emerald-50 border-emerald-100 shadow-emerald-100",
+        B: "text-blue-600 bg-blue-50 border-blue-100 shadow-blue-100",
+        C: "text-amber-600 bg-amber-50 border-amber-100 shadow-amber-100",
+        D: "text-orange-600 bg-orange-50 border-orange-100 shadow-orange-100",
+        F: "text-rose-600 bg-rose-50 border-rose-100 shadow-rose-100",
     };
 
     const theme = colorMap[grade] || colorMap["F"];
 
     return (
-        <div className="relative group">
-            <div className={`w-32 h-32 rounded-full flex items-center justify-center border-4 bg-gradient-to-br ${theme} backdrop-blur-md shadow-2xl`}>
-                <span className="text-6xl font-black">{grade}</span>
+        <div className="relative group perspective-1000">
+            <div className={`w-40 h-40 rounded-[2.5rem] flex items-center justify-center border-2 ${theme} shadow-2xl transition-all duration-500 group-hover:rotate-3 group-hover:scale-105`}>
+                <span className="text-7xl font-black tracking-tighter">{grade}</span>
             </div>
-            <div className="absolute inset-0 rounded-full bg-current opacity-20 blur-xl -z-10 group-hover:opacity-30 transition-opacity" />
+            {/* Subtle glow background */}
+            <div className={`absolute inset-4 blur-3xl opacity-20 -z-10 ${theme.split(' ')[0]} transition-opacity group-hover:opacity-40`} />
         </div>
     );
 }

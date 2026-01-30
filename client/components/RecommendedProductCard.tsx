@@ -9,31 +9,34 @@ interface RecommendedProductCardProps {
 
 export function RecommendedProductCard({ product }: RecommendedProductCardProps) {
     return (
-        <div className="group relative bg-gray-800/50 backdrop-blur-sm border border-gray-700 hover:border-blue-500/50 rounded-2xl p-6 transition-all hover:bg-gray-800">
-            <div className="absolute -top-3 -right-3">
-                <span className="flex items-center gap-1 bg-gradient-to-r from-blue-600 to-indigo-600 text-white text-xs font-bold px-3 py-1 rounded-full shadow-lg">
-                    <Sparkles className="w-3 h-3" /> Recommended
+        <div className="group relative bg-white border border-gray-100 rounded-[2rem] p-8 shadow-sm hover:shadow-2xl transition-all duration-300 hover:-translate-y-1">
+            <div className="absolute -top-3 -right-3 z-10">
+                <span className="flex items-center gap-1.5 bg-gray-900 text-white text-[10px] font-black px-4 py-1.5 rounded-full shadow-xl uppercase tracking-widest">
+                    <Sparkles className="w-3 h-3 text-blue-400" /> Best Match
                 </span>
             </div>
 
             <div className="flex flex-col h-full">
-                <div className="mb-4">
-                    <span className="text-xs font-semibold text-blue-400 uppercase tracking-wider">
+                <div className="mb-6">
+                    <span className="text-[10px] font-black text-blue-600 bg-blue-50 px-3 py-1 rounded-lg uppercase tracking-widest">
                         {product.category}
                     </span>
-                    <h3 className="text-lg font-bold text-white mt-1 group-hover:text-blue-200 transition-colors">
+                    <h3 className="text-xl font-black text-gray-900 mt-4 tracking-tight">
                         {product.title}
                     </h3>
                 </div>
 
-                <p className="text-gray-400 text-sm mb-6 flex-1">
+                <p className="text-gray-500 font-medium text-sm mb-8 flex-1 leading-relaxed">
                     {product.description}
                 </p>
 
-                <div className="flex items-center justify-between mt-auto pt-4 border-t border-gray-700/50">
-                    <span className="font-bold text-white">{product.price}</span>
-                    <button className="flex items-center gap-2 text-sm font-medium text-blue-400 hover:text-white transition-colors">
-                        Add to Bundle <ArrowRight className="w-4 h-4" />
+                <div className="flex items-center justify-between mt-auto pt-6 border-t border-gray-50">
+                    <div className="flex flex-col">
+                        <span className="text-[10px] font-bold text-gray-400 uppercase tracking-widest">Starting at</span>
+                        <span className="font-black text-2xl text-gray-900">{product.price}</span>
+                    </div>
+                    <button className="flex items-center gap-2 bg-gray-900 text-white p-3 rounded-2xl hover:bg-blue-600 transition-all shadow-lg active:scale-90">
+                        <ArrowRight className="w-5 h-5" />
                     </button>
                 </div>
             </div>

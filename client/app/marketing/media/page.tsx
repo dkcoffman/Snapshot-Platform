@@ -15,7 +15,7 @@ export default function MediaLibrary() {
     const [mediaItems, setMediaItems] = useState<any[]>([]);
 
     React.useEffect(() => {
-        fetch('http://localhost:5000/api/media')
+        fetch('http://localhost:5001/api/media')
             .then(res => res.json())
             .then(data => setMediaItems(data))
             .catch(err => console.error("Failed to load media:", err));
@@ -29,7 +29,7 @@ export default function MediaLibrary() {
             url: type === 'image' ? 'https://via.placeholder.com/400x225?text=New+Upload' : '#'
         };
 
-        const res = await fetch('http://localhost:5000/api/media', {
+        const res = await fetch('http://localhost:5001/api/media', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(newItem)

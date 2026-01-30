@@ -1,47 +1,113 @@
 {
-    "media": [
-        {
-            "id": "1",
-            "name": "Hero Banner.jpg",
-            "type": "image",
-            "size": "1.2 MB",
-            "date": "Oct 28, 2024",
-            "url": "https://via.placeholder.com/400x225?text=Hero+Banner"
-        },
-        {
-            "id": "2",
-            "name": "Product Demo.mp4",
-            "type": "video",
-            "size": "45.8 MB",
-            "date": "Oct 27, 2024",
-            "url": "https://via.placeholder.com/400x225?text=Video+Placeholder"
-        }
-    ],
-    "lists": [
-        {
-            "id": "1",
-            "name": "October Website Scans",
-            "count": 142,
-            "status": "Active",
-            "compliance": "Verified",
-            "date": "Oct 28, 2024"
-        },
-        {
-            "id": "2",
-            "name": "Premium Upsell Leads",
-            "count": 45,
-            "status": "Active",
-            "compliance": "Verified",
-            "date": "Oct 26, 2024"
-        }
-    ],
-    "templates": [
-        {
-            "id": "1",
-            "name": "Professional Newsletter",
-            "desc": "Sleek, multi-column layout for monthly updates.",
-            "category": "Informational",
-            "color": "blue"
-        }
-    ]
+  "media": [
+    {
+      "id": "1",
+      "name": "Hero Banner.jpg",
+      "type": "image",
+      "size": "1.2 MB",
+      "date": "Oct 28, 2024",
+      "url": "https://via.placeholder.com/400x225?text=Hero+Banner"
+    },
+    {
+      "id": "2",
+      "name": "Product Demo.mp4",
+      "type": "video",
+      "size": "45.8 MB",
+      "date": "Oct 27, 2024",
+      "url": "https://via.placeholder.com/400x225?text=Video+Placeholder"
+    }
+  ],
+  "lists": [
+    {
+      "id": "1",
+      "name": "October Website Scans",
+      "count": 142,
+      "status": "Active",
+      "compliance": "Verified",
+      "date": "Oct 28, 2024"
+    },
+    {
+      "id": "2",
+      "name": "Premium Upsell Leads",
+      "count": 45,
+      "status": "Active",
+      "compliance": "Verified",
+      "date": "Oct 26, 2024"
+    }
+  ],
+  "templates": [
+    {
+      "id": "1",
+      "name": "Professional Newsletter",
+      "desc": "Sleek, multi-column layout for monthly updates.",
+      "category": "Informational",
+      "color": "blue"
+    }
+  ],
+  "snapshots": [
+    {
+      "url": "https://koa.com/campgrounds/mercer/",
+      "grade": "B",
+      "scoreDetails": {
+        "seo": "Pass",
+        "security": "Secure",
+        "performance": "19456ms",
+        "social": "Ready"
+      },
+      "recommendation": "Opportunities for optimization found.",
+      "contactInfo": {
+        "emails": [
+          "info@mercerkoa.com"
+        ],
+        "phones": [
+          "1-724-748-3160"
+        ],
+        "socials": [
+          "https://www.facebook.com/KOAKampgrounds",
+          "https://twitter.com/KOAKampgrounds",
+          "http://instagram.com/kampgroundsofamerica",
+          "https://www.facebook.com/MercerKOA",
+          "https://instagram.com/mercergrovecitykoa"
+        ]
+      },
+      "timestamp": "2026-01-30T23:28:41.891Z"
+    },
+    {
+      "url": "https://islandvibestanning.com",
+      "grade": "B",
+      "scoreDetails": {
+        "seo": "Pass",
+        "security": "Secure",
+        "performance": "13319ms",
+        "social": "Ready"
+      },
+      "recommendation": "Opportunities for optimization found.",
+      "contactInfo": {
+        "emails": [],
+        "phones": [],
+        "socials": [
+          "https://www.facebook.com/people/Island-Vibes-Tanning/61581975429202/",
+          "https://www.instagram.com/islandvibestanning/"
+        ]
+      },
+      "timestamp": "2026-01-30T23:10:17.026Z"
+    },
+    {
+      "url": "https://google.com",
+      "grade": "F",
+      "scoreDetails": {
+        "seo": "Improvement Needed",
+        "security": "Secure",
+        "performance": "13760ms",
+        "social": "Missing Tags"
+      },
+      "recommendation": "Opportunities for optimization found.",
+      "contactInfo": {
+        "emails": [],
+        "phones": [],
+        "socials": []
+      },
+      "timestamp": "2026-01-30T23:09:00.813Z"
+    }
+  ]
 }

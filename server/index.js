@@ -32,8 +32,20 @@ function generateGrade(audit) {
 
 // 3. The Audit Route
 fastify.post('/api/generate-snapshot', async (request, reply) => {
-  const { businessUrl } = request.body;
-  if (!businessUrl) return reply.code(400).send({ error: 'URL required' });
+  const { businessUrl, manualData } = request.body;
+  if (!businessUrl && !manualData) return reply.code(400).send({ error: 'URL or manualData required' });
+
+  if (manualData) {
+    try {
+      const db = readDB();
+      if (!db.snapshots) db.snapshots = [];
+      db.snapshots.unshift(manualData);
+      writeDB(db);
+      return manualData;
+    } catch (dbErr) {
+      return reply.code(500).send({ error: 'DB Save Failed' });
+    }
+  }
 
   const targetUrl = businessUrl.startsWith('http') ? businessUrl : `https://${businessUrl}`;
   const startTime = Date.now();
@@ -103,7 +115,7 @@ fastify.post('/api/generate-snapshot', async (request, reply) => {
     const grade = generateGrade({ ...audit, loadTime });
     await browser.close();
 
-    return {
+    const result = {
       url: targetUrl,
       grade,
       scoreDetails: {
@@ -114,8 +126,22 @@ fastify.post('/api/generate-snapshot', async (request, reply) => {
       },
       recommendation: grade === 'A' ? 'Excellent! Optimized for search.' : 'Opportunities for optimization found.',
       contactInfo: audit.contactInfo,
+      purchasedProducts: [],
       timestamp: new Date().toISOString()
     };
+
+    // --- SAVE TO DATABASE ---
+    try {
+      const db = readDB();
+      if (!db.snapshots) db.snapshots = [];
+      db.snapshots.unshift(result);
+      writeDB(db);
+      fastify.log.info(`Saved snapshot for ${targetUrl}`);
+    } catch (dbErr) {
+      fastify.log.error('Failed to save snapshot to DB', dbErr);
+    }
+
+    return result;
   } catch (err) {
     if (browser) await browser.close();
     fastify.log.error(err);
@@ -167,6 +193,12 @@ fastify.post('/api/lists', async (request, reply) => {
 fastify.get('/api/templates', async (request, reply) => {
   const db = readDB();
   return db.templates;
+});
+
+// Snapshots Endpoints
+fastify.get('/api/snapshots', async (request, reply) => {
+  const db = readDB();
+  return db.snapshots || [];
 });
 
 // 4. Start the Server

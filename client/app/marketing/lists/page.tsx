@@ -13,7 +13,7 @@ export default function ContactLists() {
     const [lists, setLists] = useState<any[]>([]);
 
     React.useEffect(() => {
-        fetch('http://localhost:5000/api/lists')
+        fetch('http://localhost:5001/api/lists')
             .then(res => res.json())
             .then(data => setLists(data))
             .catch(err => console.error("Failed to load lists:", err));
@@ -28,7 +28,7 @@ export default function ContactLists() {
             count: 0
         };
 
-        const res = await fetch('http://localhost:5000/api/lists', {
+        const res = await fetch('http://localhost:5001/api/lists', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(newList)
