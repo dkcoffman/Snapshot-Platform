@@ -1,5 +1,13 @@
 const fastify = require('fastify')({ logger: true });
 const puppeteer = require('puppeteer');
+const fs = require('fs');
+const path = require('path');
+
+const DB_PATH = path.join(__dirname, 'db.json');
+
+// Helper to read/write JSON DB
+const readDB = () => JSON.parse(fs.readFileSync(DB_PATH, 'utf8'));
+const writeDB = (data) => fs.writeFileSync(DB_PATH, JSON.stringify(data, null, 2));
 
 // 1. Enable CORS for the Next.js Frontend
 fastify.register(require('@fastify/cors'), { origin: '*' });
@@ -113,6 +121,52 @@ fastify.post('/api/generate-snapshot', async (request, reply) => {
     fastify.log.error(err);
     return reply.code(500).send({ error: 'Audit Failed', message: 'Could not analyze site.' });
   }
+});
+
+// --- Marketing Suite Endpoints ---
+
+// Media Endpoints
+fastify.get('/api/media', async (request, reply) => {
+  const db = readDB();
+  return db.media;
+});
+
+fastify.post('/api/media', async (request, reply) => {
+  const db = readDB();
+  const newItem = {
+    id: Date.now().toString(),
+    ...request.body,
+    date: new Date().toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })
+  };
+  db.media.unshift(newItem);
+  writeDB(db);
+  return newItem;
+});
+
+// Lists Endpoints
+fastify.get('/api/lists', async (request, reply) => {
+  const db = readDB();
+  return db.lists;
+});
+
+fastify.post('/api/lists', async (request, reply) => {
+  const db = readDB();
+  const newList = {
+    id: Date.now().toString(),
+    ...request.body,
+    status: 'Active',
+    compliance: 'Verified',
+    date: new Date().toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })
+  };
+  db.lists.unshift(newList);
+  writeDB(db);
+  return newList;
+});
+
+// Templates Endpoints
+fastify.get('/api/templates', async (request, reply) => {
+  const db = readDB();
+  return db.templates;
 });
 
 // 4. Start the Server
