@@ -79,8 +79,9 @@ export function Sidebar() {
             <nav className="flex-1 overflow-y-auto custom-scrollbar pr-1">
                 <MenuSection id="overview" label="Performance">
                     <NavItem href="/" icon={LayoutDashboard} label="Home" />
-                    <NavItem href="/websites" icon={Globe} label="Websites" />
-                    <NavItem href="/reports" icon={Activity} label="Executive Report" />
+                    <NavItem href="/" icon={Activity} label="Snapshot Home" />
+                    <NavItem href="/reports" icon={FileText} label="Executive Report" />
+                    <NavItem href="/websites" icon={Globe} label="Websites & History" />
                 </MenuSection>
 
                 <MenuSection id="acquisition" label="Acquisition">
@@ -89,8 +90,8 @@ export function Sidebar() {
                     <NavItem href="/marketplace" icon={ShoppingBag} label="Marketplace" />
                 </MenuSection>
 
-                <MenuSection id="fulfillment" label="Fulfillment">
-                    <NavItem href="/workforce/receptionist" icon={Headphones} label="AI Receptionist" />
+                <MenuSection id="fulfillment" label="Presence & Fulfillment">
+                    <NavItem href="/receptionist" icon={Headphones} label="AI Receptionist" />
                     <NavItem href="/workforce/reputation" icon={CheckCircle2} label="Reputation Mgmt" />
                     <NavItem href="/workforce/content" icon={PenTool} label="Content Strategy" />
                 </MenuSection>

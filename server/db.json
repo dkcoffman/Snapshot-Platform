@@ -46,6 +46,24 @@
   ],
   "snapshots": [
     {
+      "url": "https://dcdesignportfolio.com",
+      "grade": "D",
+      "scoreDetails": {
+        "seo": "Improvement Needed",
+        "security": "Secure",
+        "performance": "7758ms",
+        "social": "Missing Tags"
+      },
+      "recommendation": "Opportunities for optimization found.",
+      "contactInfo": {
+        "emails": [],
+        "phones": [],
+        "socials": []
+      },
+      "purchasedProducts": [],
+      "timestamp": "2026-01-31T02:12:39.177Z"
+    },
+    {
       "url": "https://koa.com/campgrounds/mercer/",
       "grade": "B",
       "scoreDetails": {
