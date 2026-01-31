@@ -3,7 +3,7 @@
 import React, { useState } from 'react';
 import { Sidebar } from '@/components/Sidebar';
 import { AgentHeader } from '@/components/workforce/AgentHeader';
-import { Star, MessageCircle, CheckCircle, XCircle, ThumbsUp, Shield } from 'lucide-react';
+import { Star, MessageCircle, CheckCircle, XCircle, ThumbsUp, Shield, Sparkles } from 'lucide-react';
 
 interface Review {
     id: number;
@@ -48,94 +48,110 @@ export default function ReputationPage() {
     };
 
     return (
-        <div className="min-h-screen bg-gray-950 text-white flex">
+        <div className="min-h-screen bg-[#F8FAFC] text-gray-900 flex font-sans">
             <Sidebar />
 
-            <main className="flex-1 ml-64 p-8">
-                <AgentHeader
-                    title="AI Reputation Specialist"
-                    description="Automated Review Monitoring & Response"
-                    icon={Star}
-                />
+            <main className="flex-1 ml-72 p-12">
+                <div className="flex justify-between items-end mb-12">
+                    <div>
+                        <div className="flex items-center gap-2 text-blue-600 font-black text-[10px] uppercase tracking-[0.2em] mb-3">
+                            <Star className="w-4 h-4" /> AI Workforce
+                        </div>
+                        <h1 className="text-5xl font-black tracking-tighter text-gray-900 mb-2">Reputation Specialist</h1>
+                        <p className="text-gray-500 text-lg font-medium">Automated Monitoring & Intelligent Review Response Management.</p>
+                    </div>
+                </div>
 
                 {/* Control Panel */}
-                <div className="bg-gray-900 border border-gray-800 rounded-2xl p-6 mb-8 flex items-center justify-between">
-                    <div className="flex items-center gap-3">
-                        <div className="p-3 rounded-lg bg-blue-500/10 text-blue-400">
-                            <Shield className="w-6 h-6" />
+                <div className="bg-white rounded-[2.5rem] border border-gray-100 shadow-sm p-8 mb-10 flex items-center justify-between group">
+                    <div className="flex items-center gap-6">
+                        <div className="p-4 rounded-3xl bg-blue-50 text-blue-600 shadow-inner group-hover:scale-110 transition-transform">
+                            <Shield className="w-8 h-8" />
                         </div>
                         <div>
-                            <h3 className="font-semibold text-white">Human-in-the-loop Mode</h3>
-                            <p className="text-sm text-gray-400">Require approval before posting responses</p>
+                            <h3 className="text-xl font-black tracking-tight text-gray-900">Human-in-the-loop Mode</h3>
+                            <p className="text-gray-500 font-medium">Require manual approval before AI responses are posted to live directories.</p>
                         </div>
                     </div>
-                    <label className="relative inline-flex items-center cursor-pointer">
+                    <label className="relative inline-flex items-center cursor-pointer scale-110">
                         <input type="checkbox" className="sr-only peer" checked={autoPost} onChange={() => setAutoPost(!autoPost)} />
-                        <div className="w-11 h-6 bg-gray-700 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-blue-800 rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-blue-600"></div>
-                        <span className="ml-3 text-sm font-medium text-gray-300">{autoPost ? 'Auto-Post ON' : 'Auto-Post OFF'}</span>
+                        <div className="w-14 h-8 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-blue-100 rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[4px] after:left-[4px] after:bg-white after:border-gray-200 after:border after:rounded-full after:h-6 after:w-6 after:transition-all peer-checked:bg-blue-600"></div>
+                        <span className="ml-4 text-sm font-black text-gray-400 uppercase tracking-widest">{autoPost ? 'Auto-Post ON' : 'Auto-Post OFF'}</span>
                     </label>
                 </div>
 
                 {/* Reviews List */}
-                <div className="space-y-6">
-                    <h2 className="text-xl font-bold flex items-center gap-2">
-                        <MessageCircle className="w-5 h-5 text-gray-400" />
-                        Pending Reviews
-                    </h2>
+                <div className="space-y-8">
+                    <div className="flex items-center justify-between">
+                        <h2 className="text-2xl font-black tracking-tight flex items-center gap-3">
+                            <MessageCircle className="w-6 h-6 text-blue-600" />
+                            Pending Review Responses
+                        </h2>
+                        <span className="bg-blue-50 text-blue-600 px-4 py-1.5 rounded-full text-[10px] font-black uppercase tracking-widest">
+                            {reviews.filter(r => r.status === 'pending').length} Action Required
+                        </span>
+                    </div>
 
                     {reviews.filter(r => r.status === 'pending').length === 0 && (
-                        <div className="text-center py-12 bg-gray-900/50 rounded-2xl border border-gray-800 border-dashed">
-                            <p className="text-gray-500">No pending reviews to review. Great job!</p>
+                        <div className="text-center py-24 bg-white rounded-[3rem] border border-gray-100 border-dashed">
+                            <div className="w-20 h-20 bg-gray-50 rounded-full flex items-center justify-center mx-auto mb-6">
+                                <CheckCircle className="w-10 h-10 text-gray-300" />
+                            </div>
+                            <p className="text-gray-400 font-bold text-lg">No pending reviews. Your reputation is spotless!</p>
                         </div>
                     )}
 
                     {reviews.filter(r => r.status === 'pending').map(review => (
-                        <div key={review.id} className="bg-gray-900 border border-gray-800 rounded-2xl p-6">
-                            <div className="flex justify-between items-start mb-4">
-                                <div className="flex items-center gap-3">
-                                    <div className="w-10 h-10 rounded-full bg-indigo-500/20 text-indigo-400 flex items-center justify-center font-bold">
+                        <div key={review.id} className="bg-white rounded-[2.5rem] border border-gray-100 shadow-sm p-10 flex flex-col hover:shadow-xl transition-all duration-300 animate-in fade-in slide-in-from-bottom-4">
+                            <div className="flex justify-between items-start mb-8">
+                                <div className="flex items-center gap-4">
+                                    <div className="w-14 h-14 rounded-2xl bg-indigo-50 text-indigo-600 flex items-center justify-center font-black text-xl shadow-sm">
                                         {review.user.charAt(0)}
                                     </div>
                                     <div>
-                                        <h3 className="font-semibold text-white">{review.user}</h3>
-                                        <div className="flex items-center gap-2 text-sm text-gray-400">
-                                            <span className={`px-2 py-0.5 rounded text-xs font-medium ${review.platform === 'Google' ? 'bg-blue-500/10 text-blue-400' : 'bg-red-500/10 text-red-400'}`}>
+                                        <h3 className="text-xl font-black text-gray-900 tracking-tight">{review.user}</h3>
+                                        <div className="flex items-center gap-3 mt-1">
+                                            <span className={`px-3 py-1 rounded-full text-[10px] font-black uppercase tracking-widest ${review.platform === 'Google' ? 'bg-blue-50 text-blue-600' : 'bg-red-50 text-red-600'
+                                                }`}>
                                                 {review.platform}
                                             </span>
-                                            <span>•</span>
-                                            <span>{review.date}</span>
+                                            <span className="text-gray-300">•</span>
+                                            <span className="text-xs font-bold text-gray-400 uppercase tracking-widest">{review.date}</span>
                                         </div>
                                     </div>
                                 </div>
-                                <div className="flex items-center gap-1">
+                                <div className="flex items-center gap-1.5 bg-gray-50 p-2 rounded-xl border border-gray-100">
                                     {[...Array(5)].map((_, i) => (
-                                        <Star key={i} className={`w-4 h-4 ${i < review.rating ? 'text-yellow-500 fill-yellow-500' : 'text-gray-700'}`} />
+                                        <Star key={i} className={`w-4 h-4 ${i < review.rating ? 'text-amber-400 fill-amber-400' : 'text-gray-200'}`} />
                                     ))}
                                 </div>
                             </div>
 
-                            <p className="text-gray-300 mb-6 pl-14 font-medium">"{review.text}"</p>
+                            <p className="text-gray-700 text-lg font-medium leading-relaxed mb-8 italic">
+                                "{review.text}"
+                            </p>
 
-                            <div className="ml-14 bg-gray-800/50 border border-gray-700/50 rounded-xl p-4">
-                                <div className="flex items-center gap-2 mb-2">
-                                    <span className="text-xs font-bold text-blue-400 uppercase tracking-wider flex items-center gap-1">
-                                        <SparklesIcon className="w-3 h-3" /> AI Suggested Response
-                                    </span>
+                            <div className="bg-blue-50/50 rounded-3xl p-8 border border-blue-50">
+                                <div className="flex items-center gap-3 mb-4">
+                                    <div className="p-2 bg-blue-100 text-blue-600 rounded-lg">
+                                        <Sparkles className="w-4 h-4" />
+                                    </div>
+                                    <span className="text-[10px] font-black text-blue-600 uppercase tracking-[0.2em]">AI Suggested Response</span>
                                 </div>
-                                <p className="text-gray-400 text-sm mb-4">{review.aiResponse}</p>
+                                <p className="text-gray-700 text-lg font-medium leading-relaxed mb-8">{review.aiResponse}</p>
 
-                                <div className="flex gap-3">
+                                <div className="flex gap-4">
                                     <button
                                         onClick={() => handleAction(review.id, 'approved')}
-                                        className="flex items-center gap-2 px-4 py-2 bg-emerald-600 hover:bg-emerald-500 text-white rounded-lg text-sm font-medium transition-colors"
+                                        className="flex-1 items-center justify-center gap-3 px-8 py-4 bg-gray-900 text-white rounded-2xl font-black text-sm hover:bg-emerald-600 transition-all shadow-xl shadow-gray-200 flex active:scale-95"
                                     >
-                                        <CheckCircle className="w-4 h-4" /> Approve & Post
+                                        <CheckCircle className="w-5 h-5" /> Approve & Post
                                     </button>
                                     <button
                                         onClick={() => handleAction(review.id, 'rejected')}
-                                        className="flex items-center gap-2 px-4 py-2 bg-gray-700 hover:bg-gray-600 text-white rounded-lg text-sm font-medium transition-colors"
+                                        className="px-8 py-4 bg-white text-gray-400 border border-gray-100 rounded-2xl font-black text-sm hover:bg-rose-50 hover:text-rose-600 hover:border-rose-100 transition-all flex active:scale-95"
                                     >
-                                        <XCircle className="w-4 h-4" /> Reject
+                                        <XCircle className="w-5 h-5" /> Reject
                                     </button>
                                 </div>
                             </div>
@@ -145,10 +161,4 @@ export default function ReputationPage() {
             </main>
         </div>
     );
-}
-
-function SparklesIcon(props: any) {
-    return (
-        <svg {...props} xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="m12 3-1.912 5.813a2 2 0 0 1-1.275 1.275L3 12l5.813 1.912a2 2 0 0 1 1.275 1.275L12 21l1.912-5.813a2 2 0 0 1 1.275-1.275L21 12l-5.813-1.912a2 2 0 0 1-1.275-1.275L12 3Z" /></svg>
-    )
 }

@@ -5,7 +5,7 @@ import { Sidebar } from '@/components/Sidebar';
 import {
     Type, Image as ImageIcon, MousePointer2, Minus, Share2,
     Smartphone, Monitor, ChevronLeft, Save, Send, Trash2,
-    Settings, Layout, Layers, Info
+    Settings, Layout, Layers, Info, Sparkles
 } from 'lucide-react';
 
 type ElementType = 'text' | 'image' | 'button' | 'divider' | 'social';
@@ -24,8 +24,8 @@ export default function EmailBuilder() {
         {
             id: '1',
             type: 'text',
-            content: { html: '<h1 style="text-align: center; font-size: 24px;">Welcome to Our Newsletter</h1><p style="text-align: center; color: #666;">We are excited to share our latest updates with you.</p>' },
-            style: { padding: '20px' }
+            content: { html: '<h1 style="text-align: center; font-size: 28px; font-weight: 900; letter-spacing: -0.05em; color: #111827;">Welcome to the New Era</h1><p style="text-align: center; color: #6B7280; font-weight: 500; font-size: 16px;">We are excited to share our latest intelligence updates with you.</p>' },
+            style: { padding: '40px 20px' }
         }
     ]);
     const [selectedElementId, setSelectedElementId] = useState<string | null>(null);
@@ -43,9 +43,9 @@ export default function EmailBuilder() {
 
     const getDefaultContent = (type: ElementType) => {
         switch (type) {
-            case 'text': return { html: '<p>New text block ready for editing...</p>' };
-            case 'image': return { src: 'https://via.placeholder.com/600x300', alt: 'Placeholder' };
-            case 'button': return { text: 'Click Here', url: '#' };
+            case 'text': return { html: '<p style="color: #374151;">New narrative block ready for high-conversion copywriting...</p>' };
+            case 'image': return { src: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&q=80&w=2426&ixlib=rb-4.0.3', alt: 'Marketing Hero' };
+            case 'button': return { text: 'Elevate Strategy', url: '#' };
             case 'divider': return {};
             case 'social': return { platforms: ['Facebook', 'LinkedIn', 'Twitter'] };
             default: return {};
@@ -61,77 +61,80 @@ export default function EmailBuilder() {
     const selectedElement = elements.find(el => el.id === selectedElementId);
 
     return (
-        <div className="min-h-screen bg-gray-950 text-white flex overflow-hidden">
+        <div className="min-h-screen bg-[#F8FAFC] text-gray-900 flex overflow-hidden font-sans">
             <Sidebar />
 
-            <div className="flex-1 ml-64 flex flex-col h-screen">
+            <div className="flex-1 ml-72 flex flex-col h-screen">
                 {/* Header/Controls */}
-                <header className="h-16 border-b border-gray-800 bg-gray-900/50 backdrop-blur-md px-6 flex items-center justify-between z-20">
-                    <div className="flex items-center gap-4">
-                        <button className="p-2 hover:bg-gray-800 rounded-lg transition-colors text-gray-400 hover:text-white">
-                            <ChevronLeft className="w-5 h-5" />
+                <header className="h-20 border-b border-gray-100 bg-white px-8 flex items-center justify-between z-20">
+                    <div className="flex items-center gap-6">
+                        <button className="p-3 hover:bg-gray-50 rounded-2xl transition-all text-gray-400 hover:text-gray-900 border border-transparent hover:border-gray-100 active:scale-95">
+                            <ChevronLeft className="w-6 h-6" />
                         </button>
                         <div>
-                            <h1 className="text-sm font-semibold text-white">Monthly Update Template</h1>
-                            <p className="text-[10px] text-gray-500 uppercase tracking-wider font-bold">Draft • Saved 2m ago</p>
+                            <h1 className="text-lg font-black text-gray-900 tracking-tight">Monthly ROI Campaign Template</h1>
+                            <div className="flex items-center gap-2 mt-0.5">
+                                <span className="text-[10px] font-black text-blue-600 uppercase tracking-widest bg-blue-50 px-2 py-0.5 rounded-full">Draft Strategy</span>
+                                <span className="text-[10px] font-bold text-gray-400 uppercase tracking-widest">Manual Save 2m ago</span>
+                            </div>
                         </div>
                     </div>
 
-                    <div className="flex items-center bg-gray-950 p-1 rounded-lg border border-gray-800">
+                    <div className="flex items-center bg-gray-50 p-1.5 rounded-2xl border border-gray-100">
                         <button
                             onClick={() => setViewMode('desktop')}
-                            className={`p-1.5 rounded-md transition-all ${viewMode === 'desktop' ? 'bg-gray-800 text-blue-400 shadow-sm' : 'text-gray-500 hover:text-white'}`}
+                            className={`flex items-center gap-2 px-4 py-2 rounded-xl transition-all text-xs font-black uppercase tracking-widest ${viewMode === 'desktop' ? 'bg-white text-blue-600 shadow-sm' : 'text-gray-400 hover:text-gray-900'}`}
                         >
-                            <Monitor className="w-4 h-4" />
+                            <Monitor className="w-4 h-4" /> Desktop
                         </button>
                         <button
                             onClick={() => setViewMode('mobile')}
-                            className={`p-1.5 rounded-md transition-all ${viewMode === 'mobile' ? 'bg-gray-800 text-blue-400 shadow-sm' : 'text-gray-500 hover:text-white'}`}
+                            className={`flex items-center gap-2 px-4 py-2 rounded-xl transition-all text-xs font-black uppercase tracking-widest ${viewMode === 'mobile' ? 'bg-white text-blue-600 shadow-sm' : 'text-gray-400 hover:text-gray-900'}`}
                         >
-                            <Smartphone className="w-4 h-4" />
+                            <Smartphone className="w-4 h-4" /> Mobile
                         </button>
                     </div>
 
-                    <div className="flex items-center gap-3">
-                        <button className="px-4 py-2 text-sm font-medium text-gray-400 hover:text-white transition-colors">
+                    <div className="flex items-center gap-4">
+                        <button className="px-6 py-2.5 text-sm font-black text-gray-400 hover:text-gray-900 transition-colors uppercase tracking-widest">
                             Preview
                         </button>
-                        <button className="flex items-center gap-2 px-4 py-2 bg-blue-600 hover:bg-blue-500 text-white rounded-lg text-sm font-bold transition-all shadow-lg shadow-blue-500/20">
-                            <Send className="w-4 h-4" /> Send Test
+                        <button className="flex items-center gap-3 px-6 py-3 bg-gray-900 hover:bg-blue-600 text-white rounded-2xl text-sm font-black transition-all shadow-xl shadow-gray-200 active:scale-95">
+                            <Send className="w-4 h-4" /> Final Dispatch
                         </button>
-                        <button className="p-2 bg-gray-800 hover:bg-gray-700 rounded-lg border border-gray-700 transition-colors">
-                            <Save className="w-4 h-4 text-white" />
+                        <button className="p-3 bg-white hover:bg-gray-50 rounded-2xl border border-gray-100 transition-all active:scale-95">
+                            <Save className="w-5 h-5 text-gray-900" />
                         </button>
                     </div>
                 </header>
 
                 <div className="flex-1 flex overflow-hidden">
                     {/* Left Sidebar: Components */}
-                    <aside className="w-72 bg-gray-900 border-r border-gray-800 flex flex-col overflow-y-auto">
-                        <div className="flex border-b border-gray-800">
+                    <aside className="w-80 bg-white border-r border-gray-100 flex flex-col overflow-y-auto">
+                        <div className="flex border-b border-gray-100">
                             <button
                                 onClick={() => setActiveTab('content')}
-                                className={`flex-1 py-4 text-xs font-bold uppercase tracking-widest transition-colors ${activeTab === 'content' ? 'text-blue-400 border-b-2 border-blue-400 bg-blue-400/5' : 'text-gray-500 hover:text-gray-300'}`}
+                                className={`flex-1 py-5 text-[10px] font-black uppercase tracking-[0.2em] transition-all ${activeTab === 'content' ? 'text-blue-600 border-b-2 border-blue-600 bg-blue-50/30' : 'text-gray-400 hover:text-gray-600'}`}
                             >
-                                Content
+                                Architecture
                             </button>
                             <button
                                 onClick={() => setActiveTab('design')}
-                                className={`flex-1 py-4 text-xs font-bold uppercase tracking-widest transition-colors ${activeTab === 'design' ? 'text-blue-400 border-b-2 border-blue-400 bg-blue-400/5' : 'text-gray-500 hover:text-gray-300'}`}
+                                className={`flex-1 py-5 text-[10px] font-black uppercase tracking-[0.2em] transition-all ${activeTab === 'design' ? 'text-blue-600 border-b-2 border-blue-600 bg-blue-50/30' : 'text-gray-400 hover:text-gray-600'}`}
                             >
-                                Design
+                                Appearance
                             </button>
                         </div>
 
-                        <div className="p-4 space-y-6">
+                        <div className="p-6 space-y-8">
                             {activeTab === 'content' ? (
                                 <>
-                                    <div className="grid grid-cols-2 gap-3">
+                                    <div className="grid grid-cols-2 gap-4">
                                         {[
-                                            { type: 'text', icon: Type, label: 'Text' },
-                                            { type: 'image', icon: ImageIcon, label: 'Image' },
-                                            { type: 'button', icon: MousePointer2, label: 'Button' },
-                                            { type: 'divider', icon: Minus, label: 'Divider' },
+                                            { type: 'text', icon: Type, label: 'Narrative' },
+                                            { type: 'image', icon: ImageIcon, label: 'Asset' },
+                                            { type: 'button', icon: MousePointer2, label: 'CTA' },
+                                            { type: 'divider', icon: Minus, label: 'Break' },
                                             { type: 'social', icon: Share2, label: 'Social' },
                                             { type: 'layout', icon: Layout, label: 'Section' },
                                         ].map((item) => (
@@ -139,46 +142,54 @@ export default function EmailBuilder() {
                                                 key={item.label}
                                                 draggable
                                                 onClick={() => addElement(item.type as ElementType)}
-                                                className="flex flex-col items-center justify-center p-4 bg-gray-950 border border-gray-800 rounded-xl hover:border-blue-500/50 hover:bg-gray-900 transition-all group"
+                                                className="flex flex-col items-center justify-center p-6 bg-white border border-gray-100 rounded-[2rem] hover:border-blue-500/50 hover:bg-blue-50 transition-all group shadow-sm active:scale-95"
                                             >
-                                                <item.icon className="w-6 h-6 text-gray-500 group-hover:text-blue-400 mb-2 transition-colors" />
-                                                <span className="text-[10px] font-bold text-gray-400 group-hover:text-white uppercase tracking-tighter">{item.label}</span>
+                                                <div className="p-3 bg-gray-50 rounded-2xl group-hover:bg-blue-600 text-gray-400 group-hover:text-white transition-all mb-3">
+                                                    <item.icon className="w-6 h-6" />
+                                                </div>
+                                                <span className="text-[10px] font-black text-gray-400 group-hover:text-gray-900 uppercase tracking-widest">{item.label}</span>
                                             </button>
                                         ))}
                                     </div>
-                                    <div className="p-4 bg-blue-500/5 border border-blue-500/20 rounded-xl">
-                                        <div className="flex items-center gap-2 mb-2">
-                                            <Info className="w-3 h-3 text-blue-400" />
-                                            <span className="text-[10px] font-bold text-blue-400 uppercase">Compliance Pro-Tip</span>
+                                    <div className="p-6 bg-blue-50 border border-blue-100 rounded-[2.5rem]">
+                                        <div className="flex items-center gap-3 mb-3">
+                                            <div className="p-1.5 bg-blue-100 text-blue-600 rounded-lg">
+                                                <Info className="w-3.5 h-3.5" />
+                                            </div>
+                                            <span className="text-[10px] font-black text-blue-600 uppercase tracking-widest">Compliance Engine</span>
                                         </div>
-                                        <p className="text-[11px] text-gray-400 leading-relaxed">
-                                            We've locked your legal footer to comply with **GDPR, CASL, and CAN-SPAM**. You can edit the address in Settings.
+                                        <p className="text-xs text-gray-500 font-medium leading-relaxed">
+                                            Global footer is locked to ensure 100% compliance with **GDPR, CASL, and CAN-SPAM**. Edit company data in Identity Settings.
                                         </p>
                                     </div>
                                 </>
                             ) : (
-                                <div className="space-y-4">
-                                    <div className="space-y-2">
-                                        <label className="text-[10px] font-bold text-gray-500 uppercase tracking-widest">Global Font</label>
-                                        <select className="w-full bg-gray-950 border border-gray-800 rounded-lg p-2 text-sm text-white focus:ring-1 focus:ring-blue-500 outline-none">
-                                            <option>Inter (Sans Serif)</option>
-                                            <option>Roboto</option>
-                                            <option>Arial</option>
-                                            <option>Georgia</option>
+                                <div className="space-y-8">
+                                    <div className="space-y-4">
+                                        <label className="text-[10px] font-black text-gray-400 uppercase tracking-widest ml-1">Global Typography</label>
+                                        <select className="w-full bg-gray-50 border border-gray-100 rounded-2xl p-4 text-sm font-bold text-gray-900 focus:ring-2 focus:ring-blue-500 outline-none transition-all">
+                                            <option>Inter (Modern Sans)</option>
+                                            <option>Roboto (Universal)</option>
+                                            <option>Outfit (Premium)</option>
+                                            <option>Sora (Geometric)</option>
                                         </select>
                                     </div>
-                                    <div className="space-y-2">
-                                        <label className="text-[10px] font-bold text-gray-500 uppercase tracking-widest">Background Color</label>
-                                        <div className="flex items-center gap-2">
-                                            <div className="w-8 h-8 rounded-md bg-gray-100 border border-gray-700 cursor-pointer"></div>
-                                            <span className="text-sm text-gray-400">#F3F4F6</span>
+                                    <div className="space-y-4">
+                                        <label className="text-[10px] font-black text-gray-400 uppercase tracking-widest ml-1">Canvas Backdrop</label>
+                                        <div className="flex items-center gap-4 bg-gray-50 p-4 rounded-2xl border border-gray-100">
+                                            <div className="w-10 h-10 rounded-xl bg-gray-100 border border-gray-200 cursor-pointer shadow-inner"></div>
+                                            <span className="text-sm font-black text-gray-900 tracking-tight">#F8FAFC</span>
                                         </div>
                                     </div>
-                                    <div className="space-y-2">
-                                        <label className="text-[10px] font-bold text-gray-500 uppercase tracking-widest">Body Width</label>
-                                        <div className="flex items-center gap-4">
-                                            <input type="range" className="flex-1 accent-blue-500" defaultValue={600} min={480} max={900} />
-                                            <span className="text-sm text-gray-400">600px</span>
+                                    <div className="space-y-4">
+                                        <label className="text-[10px] font-black text-gray-400 uppercase tracking-widest ml-1">Responsive Width</label>
+                                        <div className="bg-gray-50 p-6 rounded-2xl border border-gray-100">
+                                            <input type="range" className="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer accent-blue-600" defaultValue={600} min={480} max={900} />
+                                            <div className="flex justify-between mt-3 text-[10px] font-black text-gray-400 uppercase">
+                                                <span>480px</span>
+                                                <span className="text-blue-600">600px Max</span>
+                                                <span>900px</span>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
@@ -187,15 +198,19 @@ export default function EmailBuilder() {
                     </aside>
 
                     {/* Main Canvas */}
-                    <div className="flex-1 bg-gray-950 overflow-y-auto p-12 flex justify-center custom-scrollbar">
+                    <div className="flex-1 bg-gray-50 overflow-y-auto p-20 flex justify-center custom-scrollbar">
                         <div
-                            className={`bg-white shadow-2xl transition-all duration-300 min-h-[800px] flex flex-col ${viewMode === 'desktop' ? 'w-[600px]' : 'w-[375px]'}`}
+                            className={`bg-white shadow-2xl transition-all duration-500 min-h-[900px] flex flex-col rounded-[2rem] border border-gray-100 overflow-hidden ${viewMode === 'desktop' ? 'w-[600px]' : 'w-[375px]'}`}
                         >
                             {/* Logo Row */}
-                            <div className="p-8 pb-4 flex justify-center">
-                                <div className="text-2xl font-black text-gray-900 flex items-center gap-2">
-                                    <div className="w-8 h-8 bg-blue-600 rounded-lg"></div>
-                                    OCC CATALYST
+                            <div className="p-12 pb-6 flex justify-center">
+                                <div className="flex flex-col items-center gap-3">
+                                    <div className="w-12 h-12 bg-gray-900 rounded-2xl flex items-center justify-center shadow-lg shadow-gray-200">
+                                        <div className="w-5 h-5 bg-white rounded-md"></div>
+                                    </div>
+                                    <div className="text-xs font-black text-gray-900 tracking-[0.3em] uppercase">
+                                        Partner Network
+                                    </div>
                                 </div>
                             </div>
 
@@ -205,36 +220,38 @@ export default function EmailBuilder() {
                                     <div
                                         key={el.id}
                                         onClick={() => setSelectedElementId(el.id)}
-                                        className={`relative group cursor-pointer transition-all border-2 ${selectedElementId === el.id ? 'border-blue-500 z-10' : 'border-transparent hover:border-blue-500/30'}`}
+                                        className={`relative group cursor-pointer transition-all border-2 ${selectedElementId === el.id ? 'border-blue-500 z-10' : 'border-transparent hover:border-blue-500/20'}`}
                                     >
                                         {selectedElementId === el.id && (
-                                            <div className="absolute -top-10 right-0 flex items-center bg-blue-500 text-white rounded-t-lg px-2 py-1 shadow-lg">
-                                                <button onClick={(e) => deleteElement(e, el.id)} className="p-1 hover:bg-blue-600 rounded">
+                                            <div className="absolute -top-12 right-0 flex items-center bg-blue-600 text-white rounded-2xl px-3 py-1.5 shadow-xl animate-in fade-in slide-in-from-bottom-2">
+                                                <button onClick={(e) => deleteElement(e, el.id)} className="p-1.5 hover:bg-rose-500 rounded-lg transition-colors">
                                                     <Trash2 className="w-4 h-4" />
                                                 </button>
-                                                <div className="mx-1 h-4 w-[1px] bg-blue-400"></div>
-                                                <button className="p-1 hover:bg-blue-600 rounded">
+                                                <div className="mx-2 h-4 w-[1px] bg-white/20"></div>
+                                                <button className="p-1.5 hover:bg-blue-700 rounded-lg transition-colors">
                                                     <Layers className="w-4 h-4" />
                                                 </button>
+                                                <div className="mx-2 h-4 w-[1px] bg-white/20"></div>
+                                                <span className="text-[10px] font-black uppercase tracking-widest px-1">{el.type}</span>
                                             </div>
                                         )}
 
                                         <div className="text-gray-900 overflow-hidden" style={el.style}>
-                                            {el.type === 'text' && <div dangerouslySetInnerHTML={{ __html: el.content.html }} className="prose prose-sm max-w-none" />}
-                                            {el.type === 'image' && <img src={el.content.src} alt={el.content.alt} className="w-full h-auto rounded-lg" />}
+                                            {el.type === 'text' && <div dangerouslySetInnerHTML={{ __html: el.content.html }} className="prose prose-sm max-w-none font-medium leading-relaxed" />}
+                                            {el.type === 'image' && <img src={el.content.src} alt={el.content.alt} className="w-full h-auto rounded-[2rem] shadow-sm border border-gray-100" />}
                                             {el.type === 'button' && (
-                                                <div className="flex justify-center py-4">
-                                                    <a href={el.content.url} className="bg-blue-600 text-white px-8 py-3 rounded-lg font-bold text-sm shadow-md hover:shadow-lg transition-all">
-                                                        {el.content.text}
+                                                <div className="flex justify-center py-6">
+                                                    <a href={el.content.url} className="bg-gray-900 text-white px-10 py-5 rounded-2xl font-black text-lg shadow-2xl shadow-gray-200 hover:bg-blue-600 transition-all flex items-center gap-3">
+                                                        {el.content.text} <ArrowRight className="w-5 h-5" />
                                                     </a>
                                                 </div>
                                             )}
-                                            {el.type === 'divider' && <hr className="border-gray-200 my-4" />}
+                                            {el.type === 'divider' && <hr className="border-gray-100 my-8 w-1/4 mx-auto border-2 rounded-full" />}
                                             {el.type === 'social' && (
-                                                <div className="flex justify-center gap-4 py-4 text-gray-600">
+                                                <div className="flex justify-center gap-6 py-8">
                                                     {el.content.platforms.map((p: string) => (
-                                                        <span key={p} className="w-8 h-8 rounded-full bg-gray-100 flex items-center justify-center hover:bg-gray-200 transition-colors">
-                                                            <Share2 className="w-4 h-4" />
+                                                        <span key={p} className="w-12 h-12 rounded-2xl bg-gray-50 flex items-center justify-center hover:bg-blue-50 hover:text-blue-600 transition-all shadow-sm border border-gray-100">
+                                                            <Share2 className="w-5 h-5 text-gray-400 group-hover:text-blue-600" />
                                                         </span>
                                                     ))}
                                                 </div>
@@ -245,14 +262,17 @@ export default function EmailBuilder() {
                             </div>
 
                             {/* Mandatory Legal Footer (Locked) */}
-                            <footer className="p-12 border-t border-gray-100 bg-gray-50 text-center text-[11px] text-gray-500">
-                                <div className="space-y-4 max-w-[400px] mx-auto opacity-70">
-                                    <p className="font-semibold text-gray-700">OCC Catalyst • 123 Tech Avenue • Suite 400 • Palo Alto, CA 94301</p>
-                                    <p>You received this email because you subscribed to our marketing updates. We respect your privacy and follow all global regulations including GDPR, CAN-SPAM, and PECR.</p>
-                                    <div className="flex justify-center gap-4 text-blue-600 font-medium">
-                                        <a href="/preferences" className="hover:underline">Manage Preferences</a>
-                                        <span className="text-gray-300">|</span>
-                                        <a href="/preferences?unsubscribe=all" className="hover:underline text-red-500">Unsubscribe</a>
+                            <footer className="p-16 border-t border-gray-50 bg-gray-50/50 text-center">
+                                <div className="space-y-6 max-w-[400px] mx-auto opacity-70">
+                                    <div className="flex items-center justify-center gap-2 mb-4">
+                                        <div className="w-2 h-2 rounded-full bg-blue-600"></div>
+                                        <p className="text-[10px] font-black text-gray-900 uppercase tracking-widest">Global Governance Lock</p>
+                                    </div>
+                                    <p className="text-[11px] font-bold text-gray-900 leading-relaxed uppercase tracking-tighter">OCC Catalyst • 123 Tech Avenue • Suite 400 • Palo Alto, CA 94301</p>
+                                    <p className="text-[10px] font-medium text-gray-500 leading-relaxed">You received this communique as an official partner. We protect your data and narrative in accordance with global Privacy and Compliance mandates.</p>
+                                    <div className="flex justify-center gap-6 pt-4">
+                                        <a href="/preferences" className="text-[10px] font-black text-blue-600 uppercase tracking-widest hover:underline decoration-2 underline-offset-4">Preferences</a>
+                                        <a href="/preferences?unsubscribe=all" className="text-[10px] font-black text-rose-500 uppercase tracking-widest hover:underline decoration-2 underline-offset-4">Opt-Out</a>
                                     </div>
                                 </div>
                             </footer>
@@ -260,37 +280,37 @@ export default function EmailBuilder() {
                     </div>
 
                     {/* Right Panel: Settings */}
-                    <aside className="w-72 bg-gray-900 border-l border-gray-800 flex flex-col overflow-y-auto">
-                        <div className="p-4 border-b border-gray-800 bg-gray-950 flex items-center justify-between">
-                            <h2 className="text-xs font-bold uppercase tracking-widest text-gray-400">Settings</h2>
-                            <Settings className="w-4 h-4 text-gray-600" />
+                    <aside className="w-80 bg-white border-l border-gray-100 flex flex-col overflow-y-auto">
+                        <div className="p-6 border-b border-gray-100 bg-gray-50/50 flex items-center justify-between">
+                            <h2 className="text-[10px] font-black uppercase tracking-[0.2em] text-gray-400">Element Properties</h2>
+                            <Settings className="w-4 h-4 text-gray-400" />
                         </div>
 
                         {selectedElement ? (
-                            <div className="p-6 space-y-8 animate-in slide-in-from-right-4 duration-300">
-                                <div className="space-y-3">
-                                    <label className="text-[10px] font-bold text-gray-500 uppercase tracking-widest">Type</label>
-                                    <div className="p-3 bg-blue-500/10 border border-blue-500/20 rounded-xl flex items-center gap-3">
-                                        <div className="w-8 h-8 bg-blue-600 rounded-lg flex items-center justify-center">
-                                            {selectedElement.type === 'text' && <Type className="w-4 h-4" />}
-                                            {selectedElement.type === 'image' && <ImageIcon className="w-4 h-4" />}
-                                            {selectedElement.type === 'button' && <MousePointer2 className="w-4 h-4" />}
-                                            {selectedElement.type === 'divider' && <Minus className="w-4 h-4" />}
-                                            {selectedElement.type === 'social' && <Share2 className="w-4 h-4" />}
+                            <div className="p-8 space-y-10 animate-in slide-in-from-right-4 duration-300">
+                                <div className="space-y-4">
+                                    <label className="text-[10px] font-black text-gray-400 uppercase tracking-widest ml-1">Composition</label>
+                                    <div className="p-5 bg-blue-50 border border-blue-100 rounded-[2rem] flex items-center gap-4">
+                                        <div className="w-12 h-12 bg-blue-600 text-white rounded-2xl flex items-center justify-center shadow-lg shadow-blue-200">
+                                            {selectedElement.type === 'text' && <Type className="w-6 h-6" />}
+                                            {selectedElement.type === 'image' && <ImageIcon className="w-6 h-6" />}
+                                            {selectedElement.type === 'button' && <MousePointer2 className="w-6 h-6" />}
+                                            {selectedElement.type === 'divider' && <Minus className="w-6 h-6" />}
+                                            {selectedElement.type === 'social' && <Share2 className="w-6 h-6" />}
                                         </div>
                                         <div>
-                                            <p className="text-xs font-bold text-white capitalize">{selectedElement.type}</p>
-                                            <p className="text-[10px] text-blue-400">Active Element</p>
+                                            <p className="text-sm font-black text-gray-900 capitalize tracking-tight">{selectedElement.type} Block</p>
+                                            <p className="text-[10px] font-bold text-blue-600 uppercase tracking-widest">Active Selector</p>
                                         </div>
                                     </div>
                                 </div>
 
                                 {selectedElement.type === 'text' && (
-                                    <div className="space-y-4">
-                                        <div className="space-y-2">
-                                            <label className="text-[10px] font-bold text-gray-400 uppercase">Text Content</label>
+                                    <div className="space-y-6">
+                                        <div className="space-y-4">
+                                            <label className="text-[10px] font-black text-gray-400 uppercase tracking-widest ml-1">Narrative Content</label>
                                             <textarea
-                                                className="w-full bg-gray-950 border border-gray-800 rounded-lg p-3 text-sm text-gray-300 min-h-[150px] focus:ring-1 focus:ring-blue-500 outline-none"
+                                                className="w-full bg-gray-50 border border-gray-100 rounded-3xl p-5 text-sm font-bold text-gray-700 min-h-[200px] focus:ring-2 focus:ring-blue-500 outline-none transition-all resize-none shadow-sm"
                                                 defaultValue={selectedElement.content.html}
                                             />
                                         </div>
@@ -298,36 +318,50 @@ export default function EmailBuilder() {
                                 )}
 
                                 {selectedElement.type === 'button' && (
-                                    <div className="space-y-4">
-                                        <div className="space-y-2">
-                                            <label className="text-[10px] font-bold text-gray-400 uppercase">Button Text</label>
-                                            <input type="text" className="w-full bg-gray-950 border border-gray-800 rounded-lg p-3 text-sm text-white" defaultValue={selectedElement.content.text} />
+                                    <div className="space-y-6">
+                                        <div className="space-y-4">
+                                            <label className="text-[10px] font-black text-gray-400 uppercase tracking-widest ml-1">Action Text</label>
+                                            <input type="text" className="w-full bg-gray-50 border border-gray-100 rounded-2xl p-4 text-sm font-black text-gray-900" defaultValue={selectedElement.content.text} />
                                         </div>
-                                        <div className="space-y-2">
-                                            <label className="text-[10px] font-bold text-gray-400 uppercase">Target URL</label>
-                                            <input type="text" className="w-full bg-gray-950 border border-gray-800 rounded-lg p-3 text-sm text-white" defaultValue={selectedElement.content.url} />
+                                        <div className="space-y-4">
+                                            <label className="text-[10px] font-black text-gray-400 uppercase tracking-widest ml-1">Destination URL</label>
+                                            <input type="text" className="w-full bg-gray-50 border border-gray-100 rounded-2xl p-4 text-sm font-black text-gray-900" defaultValue={selectedElement.content.url} />
                                         </div>
                                     </div>
                                 )}
 
-                                <div className="space-y-4 pt-4 border-t border-gray-800">
-                                    <label className="text-[10px] font-bold text-gray-500 uppercase tracking-widest">Spacing</label>
-                                    <div className="grid grid-cols-2 gap-4">
-                                        <div className="space-y-1">
-                                            <span className="text-[9px] text-gray-500">Top Padding</span>
-                                            <input type="number" className="w-full bg-gray-950 border border-gray-800 rounded-lg p-2 text-xs" defaultValue={20} />
+                                <div className="space-y-6 pt-6 border-t border-gray-50">
+                                    <label className="text-[10px] font-black text-gray-400 uppercase tracking-widest ml-1">Internal Spacing</label>
+                                    <div className="grid grid-cols-2 gap-6">
+                                        <div className="space-y-2">
+                                            <span className="text-[9px] font-black text-gray-400 uppercase ml-1">Top</span>
+                                            <input type="number" className="w-full bg-gray-50 border border-gray-100 rounded-2xl p-4 text-xs font-black" defaultValue={20} />
                                         </div>
-                                        <div className="space-y-1">
-                                            <span className="text-[9px] text-gray-500">Bottom Padding</span>
-                                            <input type="number" className="w-full bg-gray-950 border border-gray-800 rounded-lg p-2 text-xs" defaultValue={20} />
+                                        <div className="space-y-2">
+                                            <span className="text-[9px] font-black text-gray-400 uppercase ml-1">Bottom</span>
+                                            <input type="number" className="w-full bg-gray-50 border border-gray-100 rounded-2xl p-4 text-xs font-black" defaultValue={20} />
                                         </div>
+                                    </div>
+                                </div>
+
+                                <div className="p-6 bg-purple-50 border border-purple-100 rounded-[2rem] flex items-start gap-4">
+                                    <div className="p-2 bg-purple-100 text-purple-600 rounded-xl">
+                                        <Sparkles className="w-4 h-4" />
+                                    </div>
+                                    <div>
+                                        <p className="text-[10px] font-black text-purple-600 uppercase tracking-widest mb-1">AI Copywriter</p>
+                                        <p className="text-[11px] text-gray-500 font-medium leading-relaxed">Optimize narrative for 45% higher engagement.</p>
+                                        <button className="text-[10px] font-black text-purple-600 hover:text-purple-800 transition-colors uppercase tracking-widest mt-2 underline underline-offset-2">Run Analysis</button>
                                     </div>
                                 </div>
                             </div>
                         ) : (
-                            <div className="flex-1 flex flex-col items-center justify-center p-8 text-center opacity-50">
-                                <MousePointer2 className="w-10 h-10 text-gray-700 mb-4" />
-                                <p className="text-sm text-gray-500">Click an element on the canvas to edit its properties</p>
+                            <div className="flex-1 flex flex-col items-center justify-center p-12 text-center">
+                                <div className="w-20 h-20 bg-gray-50 rounded-full flex items-center justify-center mb-6">
+                                    <MousePointer2 className="w-10 h-10 text-gray-200" />
+                                </div>
+                                <h3 className="text-lg font-black text-gray-300">No Selection</h3>
+                                <p className="text-xs text-gray-400 font-medium mt-2 leading-relaxed">Select any composition block on the canvas to refine its specific properties.</p>
                             </div>
                         )}
                     </aside>

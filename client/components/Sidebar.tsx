@@ -18,7 +18,8 @@ import {
     TrendingUp,
     Briefcase,
     Globe,
-    Activity
+    Activity,
+    Server
 } from "lucide-react";
 import React, { useState } from "react";
 
@@ -91,7 +92,8 @@ export function Sidebar() {
                 </MenuSection>
 
                 <MenuSection id="fulfillment" label="Presence & Fulfillment">
-                    <NavItem href="/receptionist" icon={Headphones} label="AI Receptionist" />
+                    <NavItem href="/websites/hosting" icon={Server} label="Enterprise Hosting" />
+                    <NavItem href="/workforce/receptionist" icon={Headphones} label="AI Receptionist" />
                     <NavItem href="/workforce/reputation" icon={CheckCircle2} label="Reputation Mgmt" />
                     <NavItem href="/workforce/content" icon={PenTool} label="Content Strategy" />
                 </MenuSection>

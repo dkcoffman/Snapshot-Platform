@@ -3,119 +3,133 @@
 import React from 'react';
 import { Sidebar } from '@/components/Sidebar';
 import { AgentHeader } from '@/components/workforce/AgentHeader';
-import { Settings, Save, Lock, Palette, Bell, Building } from 'lucide-react';
+import { Settings, Save, Lock, Palette, Bell, Building, Globe } from 'lucide-react';
 
 export default function SettingsPage() {
     return (
-        <div className="min-h-screen bg-gray-950 text-white flex">
+        <div className="min-h-screen bg-[#F8FAFC] text-gray-900 flex font-sans">
             <Sidebar />
 
-            <main className="flex-1 ml-64 p-8">
-                <AgentHeader
-                    title="Platform Settings"
-                    description="Configure your agency profile and integrations"
-                    icon={Settings}
-                    status="active" // Reusing component but status style might be irrelevant here, keeping for consistency
-                />
+            <main className="flex-1 ml-72 p-12">
+                <div className="flex justify-between items-end mb-12">
+                    <div>
+                        <div className="flex items-center gap-2 text-blue-600 font-black text-[10px] uppercase tracking-[0.2em] mb-3">
+                            <Settings className="w-4 h-4" /> Global Control
+                        </div>
+                        <h1 className="text-5xl font-black tracking-tighter text-gray-900 mb-2">Platform Settings</h1>
+                        <p className="text-gray-500 text-lg font-medium">Configure your agency identity, AI workforce permissions, and white-label tools.</p>
+                    </div>
+                    <button className="bg-gray-900 text-white hover:bg-blue-600 px-10 py-5 rounded-3xl font-black text-lg shadow-2xl shadow-gray-200 flex items-center gap-3 transition-all active:scale-95">
+                        <Save className="w-6 h-6" /> Save All Changes
+                    </button>
+                </div>
 
-                <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                <div className="grid grid-cols-1 lg:grid-cols-2 gap-10">
                     {/* Agency Profile */}
-                    <div className="bg-gray-900 border border-gray-800 rounded-2xl p-6">
-                        <h2 className="text-lg font-semibold mb-6 flex items-center gap-2">
-                            <Building className="w-5 h-5 text-blue-400" />
-                            Agency Profile
-                        </h2>
-                        <form className="space-y-4">
+                    <div className="bg-white rounded-[2.5rem] border border-gray-100 shadow-sm p-8 flex flex-col group">
+                        <div className="flex items-center gap-3 mb-8">
+                            <div className="p-2.5 bg-blue-50 text-blue-600 rounded-xl">
+                                <Building className="w-5 h-5" />
+                            </div>
+                            <h2 className="text-xl font-black tracking-tight text-gray-900">Agency Identity</h2>
+                        </div>
+
+                        <form className="space-y-6">
                             <div>
-                                <label className="block text-sm font-medium text-gray-400 mb-2">Agency Name</label>
-                                <input type="text" className="w-full bg-gray-950 border border-gray-800 rounded-lg p-3 text-white focus:ring-2 focus:ring-blue-500 outline-none" defaultValue="OCC Catalyst" />
+                                <label className="block text-[10px] font-black text-gray-400 uppercase tracking-[0.2em] mb-3">Agency Name</label>
+                                <input type="text" className="w-full bg-gray-50 border border-gray-100 rounded-2xl p-5 text-gray-900 font-bold focus:ring-2 focus:ring-blue-500 outline-none transition-all" defaultValue="OCC Catalyst" />
                             </div>
                             <div>
-                                <label className="block text-sm font-medium text-gray-400 mb-2">Support Email</label>
-                                <input type="email" className="w-full bg-gray-950 border border-gray-800 rounded-lg p-3 text-white focus:ring-2 focus:ring-blue-500 outline-none" defaultValue="support@occ-catalyst.com" />
+                                <label className="block text-[10px] font-black text-gray-400 uppercase tracking-[0.2em] mb-3">Support Email</label>
+                                <input type="email" className="w-full bg-gray-50 border border-gray-100 rounded-2xl p-5 text-gray-900 font-bold focus:ring-2 focus:ring-blue-500 outline-none transition-all" defaultValue="support@occ-catalyst.com" />
                             </div>
-                            <div className="pt-2">
-                                <label className="block text-sm font-medium text-gray-400 mb-2">Agency Logo URL</label>
-                                <div className="flex gap-2">
-                                    <input type="text" className="flex-1 bg-gray-950 border border-gray-800 rounded-lg p-3 text-white focus:ring-2 focus:ring-blue-500 outline-none" placeholder="https://..." />
-                                    <button type="button" className="bg-gray-800 hover:bg-gray-700 px-4 rounded-lg font-medium transition-colors">Upload</button>
+                            <div>
+                                <label className="block text-[10px] font-black text-gray-400 uppercase tracking-[0.2em] mb-3">Agency Logo URL</label>
+                                <div className="flex gap-4">
+                                    <input type="text" className="flex-1 bg-gray-50 border border-gray-100 rounded-2xl p-5 text-gray-900 font-bold focus:ring-2 focus:ring-blue-500 outline-none transition-all" placeholder="https://..." />
+                                    <button type="button" className="bg-white border border-gray-200 text-gray-900 hover:border-blue-600 hover:text-blue-600 px-6 rounded-2xl font-black transition-all">Upload</button>
                                 </div>
                             </div>
                         </form>
                     </div>
 
                     {/* API Configuration */}
-                    <div className="bg-gray-900 border border-gray-800 rounded-2xl p-6">
-                        <h2 className="text-lg font-semibold mb-6 flex items-center gap-2">
-                            <Lock className="w-5 h-5 text-emerald-400" />
-                            API Integrations
-                        </h2>
-                        <form className="space-y-4">
+                    <div className="bg-white rounded-[2.5rem] border border-gray-100 shadow-sm p-8 flex flex-col group">
+                        <div className="flex items-center gap-3 mb-8">
+                            <div className="p-2.5 bg-emerald-50 text-emerald-600 rounded-xl">
+                                <Lock className="w-5 h-5" />
+                            </div>
+                            <h2 className="text-xl font-black tracking-tight text-gray-900">AI Intelligence Core</h2>
+                        </div>
+
+                        <form className="space-y-6">
                             <div>
-                                <label className="block text-sm font-medium text-gray-400 mb-2">OpenAI API Key</label>
-                                <input type="password" className="w-full bg-gray-950 border border-gray-800 rounded-lg p-3 text-white focus:ring-2 focus:ring-blue-500 outline-none" placeholder="sk-..." />
+                                <label className="block text-[10px] font-black text-gray-400 uppercase tracking-[0.2em] mb-3">OpenAI Management Key</label>
+                                <input type="password" className="w-full bg-gray-50 border border-gray-100 rounded-2xl p-5 text-gray-900 font-bold focus:ring-2 focus:ring-blue-500 outline-none transition-all" placeholder="sk-..." />
                             </div>
                             <div>
-                                <label className="block text-sm font-medium text-gray-400 mb-2">Anthropic API Key</label>
-                                <input type="password" className="w-full bg-gray-950 border border-gray-800 rounded-lg p-3 text-white focus:ring-2 focus:ring-blue-500 outline-none" placeholder="sk-ant-..." />
+                                <label className="block text-[10px] font-black text-gray-400 uppercase tracking-[0.2em] mb-3">Anthropic (Claude 3.5) Key</label>
+                                <input type="password" className="w-full bg-gray-50 border border-gray-100 rounded-2xl p-5 text-gray-900 font-bold focus:ring-2 focus:ring-blue-500 outline-none transition-all" placeholder="sk-ant-..." />
                             </div>
                             <div>
-                                <label className="block text-sm font-medium text-gray-400 mb-2">Google Places Key</label>
-                                <input type="password" className="w-full bg-gray-950 border border-gray-800 rounded-lg p-3 text-white focus:ring-2 focus:ring-blue-500 outline-none" placeholder="AIzb..." />
+                                <label className="block text-[10px] font-black text-gray-400 uppercase tracking-[0.2em] mb-3">Google Maps / Places API</label>
+                                <input type="password" className="w-full bg-gray-50 border border-gray-100 rounded-2xl p-5 text-gray-900 font-bold focus:ring-2 focus:ring-blue-500 outline-none transition-all" placeholder="AIzb..." />
                             </div>
                         </form>
                     </div>
 
                     {/* White Labeling */}
-                    <div className="bg-gray-900 border border-gray-800 rounded-2xl p-6">
-                        <h2 className="text-lg font-semibold mb-6 flex items-center gap-2">
-                            <Palette className="w-5 h-5 text-purple-400" />
-                            White Labeling
-                        </h2>
-                        <div className="space-y-4">
+                    <div className="bg-white rounded-[2.5rem] border border-gray-100 shadow-sm p-8 flex flex-col group">
+                        <div className="flex items-center gap-3 mb-8">
+                            <div className="p-2.5 bg-purple-50 text-purple-600 rounded-xl">
+                                <Palette className="w-5 h-5" />
+                            </div>
+                            <h2 className="text-xl font-black tracking-tight text-gray-900">Marketplace Branding</h2>
+                        </div>
+
+                        <div className="space-y-8">
                             <div>
-                                <label className="block text-sm font-medium text-gray-400 mb-2">Primary Color</label>
-                                <div className="flex items-center gap-3">
-                                    <input type="color" className="h-10 w-20 bg-transparent border-0 cursor-pointer" defaultValue="#3b82f6" />
-                                    <span className="text-gray-400 text-sm">#3b82f6</span>
+                                <label className="block text-[10px] font-black text-gray-400 uppercase tracking-[0.2em] mb-3">Primary Platform Color</label>
+                                <div className="flex items-center gap-6">
+                                    <input type="color" className="h-14 w-24 bg-white border border-gray-100 rounded-2xl p-1 cursor-pointer shadow-sm" defaultValue="#3b82f6" />
+                                    <span className="text-lg font-black text-gray-900">#3B82F6</span>
                                 </div>
                             </div>
-                            <div className="flex items-center justify-between">
-                                <span className="text-sm font-medium text-white">Remove "Powered by Snapshot"</span>
+                            <div className="flex items-center justify-between p-6 bg-gray-50 rounded-3xl border border-gray-100">
+                                <div>
+                                    <p className="text-sm font-black text-gray-900">Remove "Powered by Snapshot"</p>
+                                    <p className="text-xs font-bold text-gray-400 mt-0.5">Full white-label experience for client logins.</p>
+                                </div>
                                 <label className="relative inline-flex items-center cursor-pointer">
                                     <input type="checkbox" className="sr-only peer" />
-                                    <div className="w-11 h-6 bg-gray-700 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-blue-600"></div>
+                                    <div className="w-11 h-6 bg-gray-200 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-200 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-blue-600"></div>
                                 </label>
                             </div>
                         </div>
                     </div>
 
                     {/* Notifications */}
-                    <div className="bg-gray-900 border border-gray-800 rounded-2xl p-6">
-                        <h2 className="text-lg font-semibold mb-6 flex items-center gap-2">
-                            <Bell className="w-5 h-5 text-amber-400" />
-                            Notifications
-                        </h2>
+                    <div className="bg-white rounded-[2.5rem] border border-gray-100 shadow-sm p-8 flex flex-col group">
+                        <div className="flex items-center gap-3 mb-8">
+                            <div className="p-2.5 bg-amber-50 text-amber-600 rounded-xl">
+                                <Bell className="w-5 h-5" />
+                            </div>
+                            <h2 className="text-xl font-black tracking-tight text-gray-900">Alert Center Configuration</h2>
+                        </div>
+
                         <div className="space-y-4">
-                            {['New Lead Alert', 'Review Posted', 'Audit Complete', 'Weekly Report'].map((item) => (
-                                <div key={item} className="flex items-center justify-between">
-                                    <span className="text-sm font-medium text-gray-300">{item}</span>
+                            {['New Lead Captured', 'Negative Review Alert', 'Audit Performance Update', 'Weekly ROI Summary'].map((item) => (
+                                <div key={item} className="flex items-center justify-between p-4 px-6 hover:bg-gray-50 rounded-2xl transition-colors">
+                                    <span className="text-sm font-bold text-gray-700">{item}</span>
                                     <label className="relative inline-flex items-center cursor-pointer">
                                         <input type="checkbox" className="sr-only peer" defaultChecked />
-                                        <div className="w-11 h-6 bg-gray-700 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-blue-600"></div>
+                                        <div className="w-11 h-6 bg-gray-200 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-200 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-blue-600"></div>
                                     </label>
                                 </div>
                             ))}
                         </div>
                     </div>
                 </div>
-
-                <div className="mt-8 flex justify-end">
-                    <button className="bg-blue-600 hover:bg-blue-500 text-white font-bold py-3 px-8 rounded-xl flex items-center gap-2 transition-all shadow-lg shadow-blue-500/20">
-                        <Save className="w-5 h-5" /> Save Changes
-                    </button>
-                </div>
-
             </main>
         </div>
     );

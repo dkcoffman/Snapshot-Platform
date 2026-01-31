@@ -153,12 +153,12 @@ export default function ExecutiveReport() {
                         </div>
                     </div>
 
-                    <div className="bg-gray-900 rounded-[2.5rem] p-10 text-white shadow-2xl relative overflow-hidden flex flex-col justify-between">
-                        <div className="absolute top-0 right-0 w-64 h-64 bg-blue-600/20 rounded-full blur-3xl -mr-20 -mt-20"></div>
+                    <div className="bg-white rounded-[2.5rem] p-10 border border-gray-100 shadow-sm relative overflow-hidden flex flex-col justify-between">
+                        <div className="absolute top-0 right-0 w-64 h-64 bg-blue-500/5 rounded-full blur-3xl -mr-20 -mt-20"></div>
                         <div className="relative z-10">
-                            <Zap className="w-12 h-12 text-blue-400 mb-6 drop-shadow-[0_0_15px_rgba(96,165,250,0.5)]" />
-                            <h3 className="text-3xl font-black mb-4 leading-tight">Your AI Workforce is active</h3>
-                            <p className="text-gray-400 text-lg mb-8 leading-relaxed font-medium">Over the last 30 days, your AI employees logged <span className="text-white font-bold">142 hours</span> of active work.</p>
+                            <Zap className="w-12 h-12 text-blue-600 mb-6 drop-shadow-[0_0_15px_rgba(59,130,246,0.1)]" />
+                            <h3 className="text-3xl font-black mb-4 leading-tight text-gray-900">Your AI Workforce is active</h3>
+                            <p className="text-gray-500 text-lg mb-8 leading-relaxed font-medium">Over the last 30 days, your AI employees logged <span className="text-gray-900 font-bold">142 hours</span> of active work.</p>
 
                             <div className="space-y-6">
                                 {[
@@ -169,17 +169,17 @@ export default function ExecutiveReport() {
                                     <div key={ai.label}>
                                         <div className="flex justify-between text-xs font-bold mb-2 uppercase tracking-widest text-gray-400">
                                             <span>{ai.label}</span>
-                                            <span className="text-white">{ai.p} efficiency</span>
+                                            <span className="text-gray-900">{ai.p} efficiency</span>
                                         </div>
-                                        <div className="h-1.5 bg-gray-800 rounded-full overflow-hidden">
-                                            <div className="h-full bg-blue-500 rounded-full shadow-[0_0_10px_rgba(59,130,246,0.5)]" style={{ width: ai.p }}></div>
+                                        <div className="h-1.5 bg-gray-50 rounded-full overflow-hidden border border-gray-100">
+                                            <div className="h-full bg-blue-600 rounded-full shadow-[0_0_10px_rgba(59,130,246,0.2)]" style={{ width: ai.p }}></div>
                                         </div>
                                     </div>
                                 ))}
                             </div>
                         </div>
 
-                        <button className="relative z-10 w-full mt-12 py-4 bg-white text-gray-900 rounded-2xl font-black hover:bg-gray-100 transition-all shadow-xl shadow-black/20 flex items-center justify-center gap-2">
+                        <button className="relative z-10 w-full mt-12 py-4 bg-gray-900 text-white rounded-2xl font-black hover:bg-gray-800 transition-all shadow-xl shadow-gray-200 flex items-center justify-center gap-2">
                             Manage Workforce <ArrowRight className="w-4 h-4" />
                         </button>
                     </div>

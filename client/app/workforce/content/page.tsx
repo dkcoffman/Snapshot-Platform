@@ -3,7 +3,7 @@
 import React, { useState } from 'react';
 import { Sidebar } from '@/components/Sidebar';
 import { AgentHeader } from '@/components/workforce/AgentHeader';
-import { PenTool, Calendar, Wand2, Instagram, Facebook, Share2 } from 'lucide-react';
+import { PenTool, Calendar, Wand2, Instagram, Facebook, Share2, Sparkles, AlertCircle } from 'lucide-react';
 
 interface ContentPost {
     id: number;
@@ -20,7 +20,6 @@ export default function ContentPage() {
 
     const generatePlan = () => {
         setIsGenerating(true);
-        // Simulate AI generation delay
         setTimeout(() => {
             setPosts([
                 { id: 1, date: 'Oct 24', platform: 'Instagram', content: 'Did you know? Consistent SEO updates can increase traffic by 40%. #MarketingTips', type: 'Educational', status: 'scheduled' },
@@ -33,83 +32,117 @@ export default function ContentPage() {
     };
 
     return (
-        <div className="min-h-screen bg-gray-950 text-white flex">
+        <div className="min-h-screen bg-[#F8FAFC] text-gray-900 flex font-sans">
             <Sidebar />
 
-            <main className="flex-1 ml-64 p-8">
-                <AgentHeader
-                    title="AI Content Assistant"
-                    description="Auto-generate brand-aligned social content"
-                    icon={PenTool}
-                />
+            <main className="flex-1 ml-72 p-12">
+                <div className="flex justify-between items-end mb-12">
+                    <div>
+                        <div className="flex items-center gap-2 text-blue-600 font-black text-[10px] uppercase tracking-[0.2em] mb-3">
+                            <PenTool className="w-4 h-4" /> AI Workforce
+                        </div>
+                        <h1 className="text-5xl font-black tracking-tighter text-gray-900 mb-2">Content Strategy</h1>
+                        <p className="text-gray-500 text-lg font-medium">Auto-generate brand-aligned social content and multi-channel marketing plans.</p>
+                    </div>
+                    <button
+                        onClick={generatePlan}
+                        disabled={isGenerating || posts.length > 0}
+                        className="bg-gray-900 text-white hover:bg-blue-600 px-10 py-5 rounded-3xl font-black text-lg shadow-2xl shadow-gray-200 flex items-center gap-3 transition-all disabled:opacity-50 disabled:cursor-not-allowed active:scale-95"
+                    >
+                        {isGenerating ? (
+                            <><Wand2 className="w-6 h-6 animate-spin" /> Analyzing Narrative...</>
+                        ) : (
+                            <><Wand2 className="w-6 h-6" /> Generate Monthly Plan</>
+                        )}
+                    </button>
+                </div>
 
-                <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+                <div className="grid grid-cols-1 lg:grid-cols-3 gap-10">
                     {/* Insights Panel */}
-                    <div className="col-span-1 space-y-6">
-                        <div className="bg-gray-900 border border-gray-800 rounded-2xl p-6">
-                            <h2 className="text-lg font-semibold mb-4 text-white">Snapshot Insights</h2>
-                            <div className="space-y-4">
-                                <div className="p-4 bg-red-500/10 border border-red-500/20 rounded-xl">
-                                    <h3 className="text-red-400 text-sm font-bold mb-1">Critical Gap</h3>
-                                    <p className="text-gray-400 text-sm">No Instagram presence detected. You're missing 40% of local engagement.</p>
+                    <div className="col-span-1 space-y-8">
+                        <div className="bg-white rounded-[2.5rem] border border-gray-100 shadow-sm p-8 group">
+                            <div className="flex items-center gap-3 mb-8">
+                                <div className="p-2.5 bg-blue-50 text-blue-600 rounded-xl">
+                                    <Sparkles className="w-5 h-5" />
                                 </div>
-                                <div className="p-4 bg-amber-500/10 border border-amber-500/20 rounded-xl">
-                                    <h3 className="text-amber-400 text-sm font-bold mb-1">Consistency Alert</h3>
-                                    <p className="text-gray-400 text-sm">Last Facebook post was 3 months ago. Recommended frequency: 2x/week.</p>
+                                <h2 className="text-xl font-black tracking-tight">AI Audit Insights</h2>
+                            </div>
+
+                            <div className="space-y-6">
+                                <div className="p-6 bg-rose-50 border border-rose-100 rounded-3xl group-hover:bg-rose-100/50 transition-colors">
+                                    <div className="flex items-center gap-2 text-rose-600 font-black text-[10px] uppercase tracking-widest mb-2">
+                                        <AlertCircle className="w-3 h-3" /> Critical Gap
+                                    </div>
+                                    <h3 className="text-gray-900 font-black text-sm mb-1">Missing Instagram Presence</h3>
+                                    <p className="text-gray-500 text-sm font-medium leading-relaxed">No linked IG account detected. You are currently missing out on ~40% of local digital engagement.</p>
+                                </div>
+
+                                <div className="p-6 bg-amber-50 border border-amber-100 rounded-3xl group-hover:bg-amber-100/50 transition-colors">
+                                    <div className="flex items-center gap-2 text-amber-600 font-black text-[10px] uppercase tracking-widest mb-2">
+                                        <AlertCircle className="w-3 h-3" /> Consistency Alert
+                                    </div>
+                                    <h3 className="text-gray-900 font-black text-sm mb-1">Low Frequency</h3>
+                                    <p className="text-gray-500 text-sm font-medium leading-relaxed">Last Facebook post was 84 days ago. Industry standard for your category is 2-3x weekly.</p>
                                 </div>
                             </div>
                         </div>
 
-                        <button
-                            onClick={generatePlan}
-                            disabled={isGenerating || posts.length > 0}
-                            className="w-full py-4 bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-500 hover:to-indigo-500 text-white rounded-2xl font-bold text-lg shadow-lg shadow-blue-500/20 flex items-center justify-center gap-2 transition-all disabled:opacity-50 disabled:cursor-not-allowed"
-                        >
-                            {isGenerating ? (
-                                <>
-                                    <Wand2 className="w-5 h-5 animate-spin" /> Generating...
-                                </>
-                            ) : (
-                                <>
-                                    <Wand2 className="w-5 h-5" /> Generate Monthly Plan
-                                </>
-                            )}
-                        </button>
+                        <div className="bg-blue-600 rounded-[2.5rem] p-10 text-white shadow-2xl relative overflow-hidden group">
+                            <div className="absolute top-0 right-0 w-32 h-32 bg-white/10 rounded-full blur-3xl -mr-16 -mt-16 transition-all group-hover:bg-white/20"></div>
+                            <h3 className="text-2xl font-black mb-4 relative z-10 leading-tight">Sync directly to Business App</h3>
+                            <p className="text-blue-100 font-medium mb-8 relative z-10">Automatically push scheduled posts to your GMB, Facebook, and Instagram profiles.</p>
+                            <button className="bg-white text-blue-600 w-full py-4 rounded-2xl font-black text-sm hover:bg-blue-50 transition-all relative z-10">
+                                Configure Auto-Sync
+                            </button>
+                        </div>
                     </div>
 
                     {/* Calendar / Feed */}
                     <div className="col-span-2">
-                        <h2 className="text-xl font-bold flex items-center gap-2 mb-6">
-                            <Calendar className="w-5 h-5 text-gray-400" />
-                            Upcoming Content
-                        </h2>
+                        <div className="flex items-center justify-between mb-8 px-4">
+                            <h2 className="text-2xl font-black tracking-tight flex items-center gap-3">
+                                <Calendar className="w-6 h-6 text-gray-400" />
+                                Upcoming Content Calendar
+                            </h2>
+                            {posts.length > 0 && (
+                                <span className="text-xs font-black text-gray-400 uppercase tracking-widest">
+                                    October 2024
+                                </span>
+                            )}
+                        </div>
 
                         {posts.length === 0 ? (
-                            <div className="h-64 bg-gray-900/50 border border-gray-800 border-dashed rounded-2xl flex flex-col items-center justify-center text-gray-500">
-                                <Share2 className="w-12 h-12 mb-4 opacity-20" />
-                                <p>No content scheduled. Click generate to start.</p>
+                            <div className="h-[600px] bg-white border border-gray-100 border-dashed rounded-[3rem] shadow-sm flex flex-col items-center justify-center text-gray-400 p-12 text-center">
+                                <div className="w-32 h-32 bg-gray-50 rounded-full flex items-center justify-center mb-8">
+                                    <Share2 className="w-16 h-16 opacity-10" />
+                                </div>
+                                <h3 className="text-2xl font-black text-gray-900 mb-2">No Content Planned</h3>
+                                <p className="text-gray-500 font-medium max-w-sm">Click the generate button above to let AI analyze your audit gaps and build a 30-day strategy.</p>
                             </div>
                         ) : (
-                            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 animate-in fade-in slide-in-from-bottom-6 duration-700">
                                 {posts.map(post => (
-                                    <div key={post.id} className="bg-gray-900 border border-gray-800 rounded-2xl p-5 hover:border-gray-700 transition-colors">
-                                        <div className="flex justify-between items-start mb-3">
-                                            <div className="flex items-center gap-2">
-                                                {post.platform === 'Instagram' && <Instagram className="w-4 h-4 text-pink-500" />}
-                                                {post.platform === 'Facebook' && <Facebook className="w-4 h-4 text-blue-500" />}
-                                                {post.platform === 'LinkedIn' && <Share2 className="w-4 h-4 text-blue-400" />}
-                                                <span className="text-sm font-medium text-gray-300">{post.date}</span>
+                                    <div key={post.id} className="bg-white border border-gray-100 rounded-[2.5rem] p-8 shadow-sm hover:shadow-xl transition-all duration-300 group">
+                                        <div className="flex justify-between items-start mb-6">
+                                            <div className="flex items-center gap-3">
+                                                <div className="p-2.5 bg-gray-50 rounded-xl group-hover:bg-blue-50 transition-colors">
+                                                    {post.platform === 'Instagram' && <Instagram className="w-5 h-5 text-pink-500" />}
+                                                    {post.platform === 'Facebook' && <Facebook className="w-5 h-5 text-blue-600" />}
+                                                    {post.platform === 'LinkedIn' && <Share2 className="w-5 h-5 text-sky-600" />}
+                                                </div>
+                                                <span className="text-xs font-black text-gray-400 uppercase tracking-widest">{post.date}</span>
                                             </div>
-                                            <span className={`px-2 py-0.5 text-xs font-medium rounded-full ${post.status === 'scheduled' ? 'bg-emerald-500/10 text-emerald-400' : 'bg-gray-700 text-gray-400'}`}>
+                                            <span className={`px-3 py-1 text-[10px] font-black uppercase tracking-widest rounded-full ${post.status === 'scheduled' ? 'bg-emerald-50 text-emerald-600' : 'bg-gray-50 text-gray-500'
+                                                }`}>
                                                 {post.status}
                                             </span>
                                         </div>
-                                        <p className="text-gray-300 text-sm mb-4 line-clamp-3">
-                                            {post.content}
+                                        <p className="text-gray-700 font-medium text-lg leading-relaxed mb-8 line-clamp-4 italic border-l-4 border-gray-50 pl-6 group-hover:border-blue-100 transition-all">
+                                            "{post.content}"
                                         </p>
-                                        <div className="flex items-center justify-between mt-auto">
-                                            <span className="text-xs text-gray-500 bg-gray-800 px-2 py-1 rounded">{post.type}</span>
-                                            <button className="text-sm text-blue-400 hover:text-white transition-colors">Edit</button>
+                                        <div className="flex items-center justify-between pt-6 border-t border-gray-50">
+                                            <span className="text-[10px] font-black text-gray-400 uppercase tracking-widest bg-gray-50 px-3 py-1 rounded-full">{post.type}</span>
+                                            <button className="text-sm font-black text-blue-600 hover:underline underline-offset-4">Edit Narrative</button>
                                         </div>
                                     </div>
                                 ))}
